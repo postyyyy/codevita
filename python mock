@@ -1,0 +1,81 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    string s1="rkpesh";
+    string s2="mdn";
+    string s3="rxdy";
+    map<char,int>m1;
+    map<char,int>m2;
+    map<char,int>m3;
+    for(auto i:s1)
+    m1[i]++;
+    for(auto i:s2)
+    m2[i]++;
+    for(auto i:s3)
+    m3[i]++;
+    vector<int>v2;
+    for(auto i:m3)
+    v2.push_back(i.second);
+    // for(auto i:v2)
+    // cout<<i<<" ";
+    vector<int>v1(v2.size(),0);
+    int gg=0;
+    for(auto i:m3){
+        if(m2[i.first])
+        v1[gg]=v1[gg]+m2[i.first];
+        if(m1[i.first])
+        v1[gg]=v1[gg]+m1[i.first];
+        gg++;
+   }
+    // for(auto i:v1)
+    // cout<<i<<" ";
+   bool a=true;
+   for(int i=0;i<v1.size();i++)
+   {
+       if(v2[i]<v1[i])
+      {
+        cout<<"0";
+        return 0;
+       a=false;
+       }
+      
+   }
+  
+   vector<int>v3(s3.size(),0);
+   int p=0;
+//   for(auto i:m3)
+//   cout<<i.first<<" "<<i.second;
+   for(auto i:s3){
+       char k=i;
+       int g1=s1.rfind(k);
+       int g2=s2.rfind(k);
+       int g3=max(g1,g2);
+       v3[p]=g3;
+       p++;
+   }
+//   cout<<v3.size();
+//   for(auto i:v3)
+//   cout<<i<<" ";
+   bool b=true;
+   for(int i=0;i<v3.size()-1;i++)
+   {
+       if(v3[i]>v3[i+1])
+       {
+          cout<<"0";
+          return 0;
+          b=false;
+         
+       }
+   }
+    
+   
+   if(a&&b)
+    {
+    cout<<"1";
+    }
+
+    
+
+    return 0;
+}
